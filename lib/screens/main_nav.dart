@@ -1,6 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:flutter/services.dart';
 import 'package:gods_eye/screens/screen_1.dart';
 import 'package:gods_eye/screens/screen_2.dart';
 import 'package:gods_eye/screens/screen_3.dart';
@@ -28,10 +28,6 @@ class _MainNavState extends State<MainNav> with TickerProviderStateMixin {
   ];
 
   Widget build(BuildContext context) {
-    ScreenUtil.instance = ScreenUtil.getInstance()..init(context);
-    ScreenUtil.instance =
-        ScreenUtil(width: 750, height: 1334, allowFontScaling: true);
-
     return Container(
       child: SafeArea(
         child: Scaffold(
