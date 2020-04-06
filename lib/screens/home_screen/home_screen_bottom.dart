@@ -1,39 +1,42 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:gods_eye/screens/home_screen/stream_list.dart';
+import 'package:gods_eye/utils/custom_icon.dart';
 
 class HomeScreenBottom extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
+    double screenWidth = MediaQuery.of(context).size.width;
+    double screenHeight = MediaQuery.of(context).size.height;
+    TextTheme textTheme = Theme.of(context).textTheme;
+
     return Container(
-      height: ScreenUtil.getInstance().setSp(510),
-      margin: EdgeInsets.only(left: ScreenUtil.getInstance().setSp(118)),
+      height: screenHeight * 0.409,
+      margin: EdgeInsets.only(left: screenWidth * 0.158),
       child: Column(
         children: <Widget>[
           Padding(
             padding: EdgeInsets.symmetric(
-                horizontal: ScreenUtil.getInstance().setSp(36)),
+              horizontal: screenWidth * 0.048,
+            ),
             child: Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: <Widget>[
                 Text(
-                  "Watch now",
-                  style: TextStyle(
+                  "Watch others",
+                  style: textTheme.title.copyWith(
                       fontSize: 22.0, fontFamily: "SF-Pro-Display-Bold"),
                 ),
-                Text(
-                  "...",
-                  style: TextStyle(
-                      fontFamily: 'SF-Pro-Display-Bold',
-                      fontSize: 20.0,
-                      fontWeight: FontWeight.bold,
-                      letterSpacing: 2),
-                )
+                RotatedBox(
+                  quarterTurns: 2,
+                  child: Icon(
+                    CustomIcons.back_icon,
+                  ),
+                ),
               ],
             ),
           ),
           Container(
-            height: ScreenUtil.getInstance().setSp(455),
+            height: screenHeight * 0.358,
             child: StreamList(),
           )
         ],
