@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class RoundedButton extends StatelessWidget {
   final String text;
@@ -9,21 +8,25 @@ class RoundedButton extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    double screenWidth = MediaQuery.of(context).size.width;
+    double screenHeight = MediaQuery.of(context).size.height;
+    TextTheme textTheme = Theme.of(context).textTheme;
+
     return InkWell(
       child: Container(
-        width: ScreenUtil.getInstance().setWidth(330),
-        height: ScreenUtil.getInstance().setHeight(100),
+        width: screenWidth * 0.44,
+        height: screenHeight * 0.075,
         decoration: BoxDecoration(
             gradient: LinearGradient(colors: [
               Color(0xFF17ead9),
               Colors.blue,
             ]),
-            borderRadius: BorderRadius.circular(6.0),
+            borderRadius: BorderRadius.circular(screenHeight * 0.01),
             boxShadow: [
               BoxShadow(
                   color: Color(0xFF6078ea).withOpacity(.3),
-                  offset: Offset(0.0, 8.0),
-                  blurRadius: 8.0)
+                  offset: Offset(0.0, screenHeight * 0.01),
+                  blurRadius: screenHeight * 0.01)
             ]),
         child: Material(
           color: Colors.transparent,
@@ -32,11 +35,11 @@ class RoundedButton extends StatelessWidget {
             child: Center(
               child: Text(
                 text,
-                style: TextStyle(
-                    color: Colors.white,
-                    fontSize: ScreenUtil.getInstance().setSp(35),
+                style: textTheme.title.copyWith(
                     letterSpacing: 1.0,
-                    fontWeight: FontWeight.bold),
+                    color: Colors.white,
+                    fontWeight: FontWeight.w800,
+                    fontSize: 19.6),
               ),
             ),
           ),
