@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:gods_eye/models/stream_data.dart';
+import 'package:gods_eye/models/stream_model/stream_data.dart';
 import 'package:gods_eye/screens/home_screen/stream_card.dart';
 import 'package:provider/provider.dart';
 
