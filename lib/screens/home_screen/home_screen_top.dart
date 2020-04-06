@@ -1,9 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:gods_eye/models/stream_data.dart';
+import 'package:gods_eye/models/stream_model/stream_data.dart';
 import 'package:gods_eye/screens/home_screen/clipper.dart';
+import 'package:gods_eye/screens/stream_screen/stream_screen.dart';
 import 'package:gods_eye/utils/constants.dart';
-import 'package:gods_eye/utils/custom_icon.dart';
 import 'package:provider/provider.dart';
 
 class HomeScreenTop extends StatefulWidget {
@@ -14,19 +13,24 @@ class HomeScreenTop extends StatefulWidget {
 class _HomeScreenTopState extends State<HomeScreenTop> {
   @override
   Widget build(BuildContext context) {
+    double screenWidth = MediaQuery.of(context).size.width;
+    double screenHeight = MediaQuery.of(context).size.height;
+    TextTheme textTheme = Theme.of(context).textTheme;
+
     return Container(
-      height: ScreenUtil.getInstance().setSp(790),
+      height: screenHeight * 0.634,
       child: Stack(
         children: <Widget>[
           ClipPath(
             clipper: Clipper(),
             child: Container(
-              height: ScreenUtil.getInstance().setSp(675),
+              height: screenHeight * 0.542,
               decoration: BoxDecoration(color: Colors.white, boxShadow: [
                 BoxShadow(
-                    color: Colors.black12,
-                    offset: Offset(0.0, 10.0),
-                    blurRadius: 10.0)
+                  color: Colors.black12,
+                  offset: Offset(0.0, screenHeight * 0.01),
+                  blurRadius: screenHeight * 0.01,
+                )
               ]),
               child: Stack(
                 children: <Widget>[
@@ -36,29 +40,11 @@ class _HomeScreenTopState extends State<HomeScreenTop> {
                               Provider.of<StreamData>(context).currentStream]
                           .imgSrc,
                       fit: BoxFit.cover,
-                      width: double.infinity,
-                      height: double.infinity),
-//                  FadeInImage(
-//                    fadeInDuration: Duration(seconds: 2),
-//                    placeholder: AssetImage(
-//                      Provider.of<StreamData>(context)
-//                          .streams[
-//                              Provider.of<StreamData>(context).beforeStream]
-//                          .imgSrc,
-//                    ),
-//                    image: AssetImage(
-//                      Provider.of<StreamData>(context)
-//                          .streams[
-//                              Provider.of<StreamData>(context).currentStream]
-//                          .imgSrc,
-//                    ),
-//                    width: double.infinity,
-//                    height: double.infinity,
-//                    fit: BoxFit.fill,
-//                  ),
+                      width: screenWidth,
+                      height: screenHeight),
                   Container(
-                    height: double.infinity,
-                    width: double.infinity,
+                    height: screenHeight,
+                    width: screenWidth,
                     decoration: BoxDecoration(
                         gradient: LinearGradient(
                             colors: [
@@ -73,24 +59,24 @@ class _HomeScreenTopState extends State<HomeScreenTop> {
                             end: FractionalOffset(0.0, 1.0))),
                     child: Padding(
                       padding: EdgeInsets.only(
-                          top: ScreenUtil.getInstance().setSp(218),
-                          left: ScreenUtil.getInstance().setSp(173)),
+                        top: screenHeight * 0.175,
+                        left: screenWidth * 0.23,
+                      ),
                       child: Column(
                         mainAxisAlignment: MainAxisAlignment.center,
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: <Widget>[
                           Padding(
                             padding: EdgeInsets.only(
-                                top: ScreenUtil.getInstance().setSp(100)),
+                              top: screenHeight * 0.08,
+                            ),
                             child: Text(
                               Provider.of<StreamData>(context)
-                                  .streams[Provider.of<StreamData>(context)
-                                      .currentStream]
-                                  .title,
-                              style: TextStyle(
+                                  .currentStreamTitle,
+                              style: textTheme.headline.copyWith(
+                                  fontFamily: "SF-Pro-Display-Bold",
                                   color: Colors.white,
-                                  fontSize: 45.0,
-                                  fontFamily: "SF-Pro-Display-Bold"),
+                                  fontSize: 45.0),
                             ),
                           )
                         ],
@@ -102,8 +88,8 @@ class _HomeScreenTopState extends State<HomeScreenTop> {
             ),
           ),
           Positioned(
-            top: ScreenUtil.getInstance().setSp(675),
-            right: ScreenUtil.getInstance().setSp(-37),
+            top: screenHeight * 0.542,
+            right: screenWidth * -0.05,
             child: FractionalTranslation(
               translation: Offset(0.0, -0.5),
               child: Row(
@@ -117,32 +103,38 @@ class _HomeScreenTopState extends State<HomeScreenTop> {
                     ),
                   ),
                   SizedBox(
-                    width: ScreenUtil.getInstance().setSp(22),
+                    width: screenWidth * 0.03,
                   ),
                   ClipRRect(
-                    borderRadius: BorderRadius.circular(30.0),
+                    borderRadius: BorderRadius.circular(screenHeight * 0.1),
                     child: RaisedButton(
-                      onPressed: () {},
+                      onPressed: () {
+                        Navigator.of(context).push(StreamScreen());
+                      },
                       color: kPrimaryColor,
                       padding: EdgeInsets.symmetric(
-                          vertical: ScreenUtil.getInstance().setSp(27),
-                          horizontal: ScreenUtil.getInstance().setSp(146)),
+                        vertical: screenHeight * 0.0220,
+                        horizontal: screenWidth * 0.195,
+                      ),
                       child: Row(
                         children: <Widget>[
                           Text(
                             "Watch Now",
-                            style: TextStyle(
+                            style: textTheme.title.copyWith(
                                 color: Colors.white,
-                                fontSize: 15.0,
-                                fontFamily: "SF-Pro-Display-Bold"),
+                                fontFamily: 'SF-Pro-Display-Bold',
+                                fontSize: 15),
                           ),
                           SizedBox(
-                            width: ScreenUtil.getInstance().setSp(9),
+                            width: screenWidth * 0.012,
                           ),
                           RotatedBox(
-                            quarterTurns: 2,
-                            child: Icon(CustomIcons.back_icon,
-                                size: 25.0, color: Colors.white),
+                            quarterTurns: 4,
+                            child: Icon(
+                              Icons.play_circle_filled,
+                              size: screenHeight * 0.035,
+                              color: Colors.white,
+                            ),
                           )
                         ],
                       ),
