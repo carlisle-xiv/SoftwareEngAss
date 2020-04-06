@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:gods_eye/components/form_card.dart';
 import 'package:gods_eye/components/horizontal_line.dart';
@@ -14,9 +13,10 @@ class SignUpScreen extends StatefulWidget {
 class _SignUpScreenState extends State<SignUpScreen> {
   @override
   Widget build(BuildContext context) {
-    ScreenUtil.instance = ScreenUtil.getInstance()..init(context);
-    ScreenUtil.instance =
-        ScreenUtil(width: 750, height: 1334, allowFontScaling: true);
+    double screenWidth = MediaQuery.of(context).size.width;
+    double screenHeight = MediaQuery.of(context).size.height;
+    TextTheme textTheme = Theme.of(context).textTheme;
+
     return new Scaffold(
       backgroundColor: Colors.white,
       resizeToAvoidBottomPadding: true,
@@ -25,12 +25,12 @@ class _SignUpScreenState extends State<SignUpScreen> {
           fit: StackFit.expand,
           children: <Widget>[
             Positioned(
-              right: ScreenUtil.getInstance().setSp(-25),
-              top: ScreenUtil.getInstance().setSp(30),
+              right: screenWidth * -0.033,
+              top: screenHeight * 0.024,
               child: SvgPicture.asset(
                 'images/sign_up_background.svg',
-                height: ScreenUtil.getInstance().setSp(380),
-                width: ScreenUtil.getInstance().setSp(380),
+                height: screenHeight * 0.305,
+                width: screenWidth * 0.305,
               ),
             ),
             Positioned(
@@ -41,7 +41,11 @@ class _SignUpScreenState extends State<SignUpScreen> {
             SingleChildScrollView(
               physics: BouncingScrollPhysics(),
               child: Padding(
-                padding: EdgeInsets.only(left: 28.0, right: 28.0, top: 60.0),
+                padding: EdgeInsets.only(
+                  left: screenWidth * 0.068,
+                  right: screenWidth * 0.068,
+                  top: screenHeight * 0.088,
+                ),
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: <Widget>[
@@ -49,46 +53,49 @@ class _SignUpScreenState extends State<SignUpScreen> {
                       children: <Widget>[
                         Image.asset(
                           "images/ball.png",
-                          width: ScreenUtil.getInstance().setWidth(110),
-                          height: ScreenUtil.getInstance().setHeight(110),
+                          width: screenWidth * 0.147,
+                          height: screenWidth * 0.138,
                         ),
-                        Text("Welcome.",
-                            style: TextStyle(
-                                fontSize: ScreenUtil.getInstance().setSp(47),
-                                letterSpacing: .6,
-                                fontWeight: FontWeight.w900)),
+                        Text(
+                          "Welcome.",
+                          style: textTheme.headline.copyWith(
+                              letterSpacing: .6,
+                              fontWeight: FontWeight.w900,
+                              fontSize: 26),
+                        ),
                       ],
                     ),
                     Padding(
                       padding: EdgeInsets.only(
-                          top: ScreenUtil.getInstance().setSp(184),
-                          left: ScreenUtil.getInstance().setSp(25)),
-                      child: Text('Enter details to register.',
-                          style: TextStyle(
-                              fontSize: ScreenUtil.getInstance().setSp(32),
-                              fontWeight: FontWeight.w500)),
+                          top: screenHeight * 0.148, left: screenWidth * 0.033),
+                      child: Text(
+                        'Enter details to register.',
+                        style: textTheme.title.copyWith(fontSize: 17.5),
+                      ),
                     ),
                     SizedBox(
-                      height: ScreenUtil.getInstance().setHeight(40),
+                      height: screenHeight * 0.037,
                     ),
                     FormCard(
                       text: 'Sign Up',
                       showForgot: false,
                     ),
-                    SizedBox(height: ScreenUtil.getInstance().setHeight(40)),
+                    SizedBox(
+                      height: screenHeight * 0.03,
+                    ),
                     Row(
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: <Widget>[RoundedButton(text: "SIGN UP")],
                     ),
                     SizedBox(
-                      height: ScreenUtil.getInstance().setHeight(40),
+                      height: screenHeight * 0.03,
                     ),
                     Row(
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: <Widget>[
                         horizontalLine(),
                         SizedBox(
-                          width: ScreenUtil.getInstance().setHeight(60),
+                          width: screenWidth * 0.03,
                         ),
                         horizontalLine()
                       ],
