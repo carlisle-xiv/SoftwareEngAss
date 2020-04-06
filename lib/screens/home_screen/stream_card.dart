@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:gods_eye/models/stream_data.dart';
+import 'package:gods_eye/models/stream_model/stream_data.dart';
 import 'package:provider/provider.dart';
 
 class StreamCard extends StatelessWidget {
@@ -16,10 +15,13 @@ class StreamCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    double screenWidth = MediaQuery.of(context).size.width;
+    double screenHeight = MediaQuery.of(context).size.height;
+    TextTheme textTheme = Theme.of(context).textTheme;
+
     return Padding(
       padding: EdgeInsets.symmetric(
-          vertical: ScreenUtil.getInstance().setSp(45),
-          horizontal: ScreenUtil.getInstance().setSp(22)),
+          vertical: screenHeight * 0.036, horizontal: screenWidth * 0.0297),
       child: GestureDetector(
         onTap: () {
           if (Provider.of<StreamData>(context).currentStream != index) {
@@ -27,43 +29,49 @@ class StreamCard extends StatelessWidget {
           }
         },
         child: Container(
-          height: ScreenUtil.getInstance().setSp(310),
-          width: ScreenUtil.getInstance().setSp(246),
+          height: screenHeight * 0.3,
+          width: screenWidth * 0.328,
           decoration: BoxDecoration(
-              borderRadius: BorderRadius.circular(20.0),
+              borderRadius: BorderRadius.circular(screenHeight * 0.03),
               color: Colors.white,
               boxShadow: [
                 BoxShadow(
                     color: Colors.black12,
-                    blurRadius: 10.0,
-                    offset: Offset(0.0, 10.0))
+                    blurRadius: screenHeight * 0.015,
+                    offset: Offset(0.0, screenHeight * 0.015))
               ]),
           child: Column(
             children: <Widget>[
               ClipRRect(
                 borderRadius: BorderRadius.only(
-                    topLeft: Radius.circular(20.0),
-                    topRight: Radius.circular(20.0)),
+                  topLeft: Radius.circular(screenHeight * 0.03),
+                  topRight: Radius.circular(screenHeight * 0.03),
+                ),
                 child: Image.asset(
                   imgSrc,
                   width: double.infinity,
-                  height: ScreenUtil.getInstance().setSp(238),
+                  height: screenHeight * 0.191,
                   fit: BoxFit.cover,
                 ),
               ),
               Padding(
                 padding: EdgeInsets.only(
-                    top: ScreenUtil.getInstance().setSp(8),
-                    left: ScreenUtil.getInstance().setSp(13),
-                    right: ScreenUtil.getInstance().setSp(13)),
-                child: Text(title,
-                    textAlign: TextAlign.center,
-                    style: TextStyle(
-                        fontSize: 16.0, fontFamily: "SF-Pro-Display-Bold")),
+                  top: screenHeight * 0.007,
+                  left: screenWidth * 0.018,
+                  right: screenWidth * 0.018,
+                ),
+                child: Text(
+                  title,
+                  textAlign: TextAlign.center,
+                  style: textTheme.title.copyWith(
+                    fontFamily: "SF-Pro-Display-Bold",
+                    fontSize: 16.0,
+                  ),
+                ),
               ),
               Padding(
                 padding: EdgeInsets.only(
-                  top: ScreenUtil.getInstance().setSp(7),
+                  top: screenHeight * 0.001,
                 ),
               )
             ],
