@@ -67,16 +67,36 @@ class _StreamFullScreenState extends State<StreamFullScreen> {
         height: screenHeight,
         width: screenWidth,
         color: Colors.black,
-        child: VlcPlayer(
-          defaultWidth: screenHeight.toInt(),
-          defaultHeight: screenWidth.toInt(),
-          url: urlToStreamVideo,
-          controller: _videoControllerFull,
-          placeholder: Container(
-              width: screenWidth,
-              height: screenHeight,
-              color: Colors.black,
-              child: Center(child: CircularProgressIndicator())),
+        child: Stack(
+          children: <Widget>[
+            VlcPlayer(
+              defaultWidth: screenHeight.toInt(),
+              defaultHeight: screenWidth.toInt(),
+              url: urlToStreamVideo,
+              controller: _videoControllerFull,
+              placeholder: Container(
+                width: screenWidth,
+                height: screenHeight,
+                color: Colors.black,
+                child: Center(child: CircularProgressIndicator()),
+              ),
+            ),
+            Positioned(
+              right: screenWidth * 0.015,
+              bottom: screenHeight * 0.026,
+              child: GestureDetector(
+                onTap: () {
+                  Navigator.of(context).pop();
+                  Navigator.of(context).push(StreamScreen());
+                },
+                child: Icon(
+                  Icons.fullscreen_exit,
+                  color: Colors.white,
+                  size: screenHeight * 0.09,
+                ),
+              ),
+            ),
+          ],
         ),
       ),
     );

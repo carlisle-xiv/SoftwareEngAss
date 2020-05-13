@@ -163,8 +163,10 @@ class ScreenLayoutState extends State<ScreenLayout> {
                           ),
                           GestureDetector(
                             onTap: () {
-                              Navigator.of(context).pop();
-                              Navigator.pushNamed(context, StreamFullScreen.id);
+//                              Navigator.of(context).pop();
+                              _videoController.dispose();
+                              Navigator.popAndPushNamed(
+                                  context, StreamFullScreen.id);
                             },
                             child: Padding(
                               padding:
