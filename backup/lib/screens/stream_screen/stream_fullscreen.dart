@@ -1,7 +1,8 @@
 import 'package:back_button_interceptor/back_button_interceptor.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:flutter_vlc_player/flutter_vlc_player.dart';
+import 'package:flutter_vlc_player/vlc_player.dart';
+import 'package:flutter_vlc_player/vlc_player_controller.dart';
 import 'package:gods_eye/models/stream_model/stream_data.dart';
 import 'package:gods_eye/models/sub_stream_model/camera_streams.dart';
 import 'package:gods_eye/screens/stream_screen/stream_screen.dart';
@@ -67,8 +68,19 @@ class _StreamFullScreenState extends State<StreamFullScreen> {
         width: screenWidth,
         color: Colors.black,
         child: Stack(
-          fit: StackFit.expand,
           children: <Widget>[
+            VlcPlayer(
+              defaultWidth: screenHeight.toInt(),
+              defaultHeight: screenWidth.toInt(),
+              url: urlToStreamVideo,
+              controller: _videoControllerFull,
+              placeholder: Container(
+                width: screenWidth,
+                height: screenHeight,
+                color: Colors.black,
+                child: Center(child: CircularProgressIndicator()),
+              ),
+            ),
             Positioned(
               right: screenWidth * 0.015,
               bottom: screenHeight * 0.026,
@@ -83,37 +95,6 @@ class _StreamFullScreenState extends State<StreamFullScreen> {
                   size: screenHeight * 0.09,
                 ),
               ),
-            ),
-            VlcPlayer(
-              defaultWidth: screenHeight.toInt(),
-              defaultHeight: screenWidth.toInt(),
-              url: urlToStreamVideo,
-              controller: _videoControllerFull,
-              placeholder: Container(
-                  width: screenWidth,
-                  height: screenHeight,
-                  color: Colors.black,
-                  child: Stack(
-                    fit: StackFit.expand,
-                    children: <Widget>[
-                      Positioned(
-                        right: screenWidth * 0.015,
-                        bottom: screenHeight * 0.026,
-                        child: GestureDetector(
-                          onTap: () {
-                            Navigator.of(context).pop();
-                            Navigator.of(context).push(StreamScreen());
-                          },
-                          child: Icon(
-                            Icons.fullscreen_exit,
-                            color: Colors.white,
-                            size: screenHeight * 0.09,
-                          ),
-                        ),
-                      ),
-                      Center(child: CircularProgressIndicator()),
-                    ],
-                  )),
             ),
           ],
         ),

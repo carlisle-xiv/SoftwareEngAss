@@ -2,7 +2,8 @@ import 'dart:collection';
 
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_vlc_player/flutter_vlc_player.dart';
+import 'package:flutter_vlc_player/vlc_player.dart';
+import 'package:flutter_vlc_player/vlc_player_controller.dart';
 import 'package:gods_eye/models/stream_model/stream_data.dart';
 import 'package:gods_eye/models/sub_stream_model/camera.dart';
 import 'package:gods_eye/models/sub_stream_model/camera_streams.dart';
@@ -163,6 +164,7 @@ class ScreenLayoutState extends State<ScreenLayout> {
                           GestureDetector(
                             onTap: () {
 //                              Navigator.of(context).pop();
+                              _videoController.dispose();
                               Navigator.popAndPushNamed(
                                   context, StreamFullScreen.id);
                             },

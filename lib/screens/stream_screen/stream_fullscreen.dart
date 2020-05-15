@@ -7,6 +7,7 @@ import 'package:gods_eye/models/stream_model/stream_data.dart';
 import 'package:gods_eye/models/sub_stream_model/camera_streams.dart';
 import 'package:gods_eye/screens/stream_screen/stream_screen.dart';
 import 'package:provider/provider.dart';
+import 'package:flutter_vector_icons/flutter_vector_icons.dart';
 
 class StreamFullScreen extends StatefulWidget {
   static String id = 'stream_fullscreen';
@@ -90,9 +91,10 @@ class _StreamFullScreenState extends State<StreamFullScreen> {
                   Navigator.of(context).push(StreamScreen());
                 },
                 child: Icon(
-                  Icons.fullscreen_exit,
+                  // Icons.fullscreen_exit,
+                  AntDesign.shrink,
                   color: Colors.white,
-                  size: screenHeight * 0.09,
+                  size: screenHeight * 0.06,
                 ),
               ),
             ),

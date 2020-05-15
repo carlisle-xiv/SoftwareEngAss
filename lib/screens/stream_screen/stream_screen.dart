@@ -14,6 +14,7 @@ import 'package:gods_eye/utils/constants.dart';
 import 'package:provider/provider.dart';
 import 'package:slide_container/slide_container.dart';
 import 'package:slide_container/slide_container_controller.dart';
+import 'package:flutter_vector_icons/flutter_vector_icons.dart';
 
 class StreamScreen extends PopupRoute<Null> {
   @override
@@ -172,9 +173,10 @@ class ScreenLayoutState extends State<ScreenLayout> {
                               padding:
                                   EdgeInsets.only(right: screenWidth * 0.04),
                               child: Icon(
-                                Icons.fullscreen,
+                                AntDesign.arrowsalt,
+                                // Icons.fullscreen,
                                 color: Colors.white,
-                                size: screenHeight * 0.04,
+                                size: screenHeight * 0.03,
                               ),
                             ),
                           ),
