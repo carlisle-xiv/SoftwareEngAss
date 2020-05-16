@@ -1,7 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:gods_eye/screens/screen_1.dart';
-import 'package:gods_eye/screens/screen_2.dart';
+import 'package:gods_eye/screens/profile_screen/profile_screen.dart';
+import 'package:gods_eye/screens/school_screen/school_screen.dart';
 import 'package:gods_eye/utils/constants.dart';
 import 'package:flutter_vector_icons/flutter_vector_icons.dart';
 import 'home_screen/home_screen.dart';
@@ -20,8 +20,8 @@ class _MainNavState extends State<MainNav> with TickerProviderStateMixin {
   @override
   List<Widget> _screenOptions = <Widget>[
     HomeScreen(),
-    Screen1(),
-    Screen2(),
+    SchoolScreen(),
+    ProfileScreen(),
   ];
 
   Widget build(BuildContext context) {

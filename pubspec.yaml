@@ -18,6 +18,8 @@ dependencies:
   back_button_interceptor: ^4.2.3
   flutter_vector_icons: ^0.2.1
   rxdart: ^0.24.0
+  sliver_fab: "^1.0.0"
+  circular_profile_avatar: ^1.0.6
 
 
 dev_dependencies:
