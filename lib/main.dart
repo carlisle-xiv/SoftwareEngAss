@@ -18,6 +18,7 @@ class MyApp extends StatelessWidget {
       providers: [
         ChangeNotifierProvider(create: (_) => StreamData()),
         ChangeNotifierProvider(create: (_) => CameraStreams()),
+        ChangeNotifierProvider(create: (_) => ChildrenData()),
       ],
       child: MaterialApp(
         debugShowCheckedModeBanner: false,
