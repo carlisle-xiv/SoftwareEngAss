@@ -1,7 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:gods_eye/models/children_models/children_data.dart';
-import 'package:gods_eye/screens/profile_screens/child_card.dart';
+import 'package:gods_eye/screens/profile_screen/child_card.dart';
 import 'package:provider/provider.dart';
 
 class ChildrenList extends StatelessWidget {
