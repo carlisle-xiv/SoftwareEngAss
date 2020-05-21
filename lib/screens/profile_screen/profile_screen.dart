@@ -1,9 +1,15 @@
-import 'package:circular_profile_avatar/circular_profile_avatar.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:sliver_fab/sliver_fab.dart';
+import 'package:circular_profile_avatar/circular_profile_avatar.dart';
+import 'package:flutter_svg/flutter_svg.dart';
+import 'package:gods_eye/components/horizontal_line.dart';
+import 'package:gods_eye/screens/profile_screen/children_list.dart';
 
 class ProfileScreen extends StatelessWidget {
+  void _validateLogout(context) {
+    Navigator.popUntil(context, (route) => route.isFirst);
+  }
+
   @override
   Widget build(BuildContext context) {
     double screenHeight = MediaQuery.of(context).size.height;
@@ -11,52 +17,139 @@ class ProfileScreen extends StatelessWidget {
     TextTheme textTheme = Theme.of(context).textTheme;
 
     return Scaffold(
-      body: Builder(
-        builder: (context) => SliverFab(
-          floatingWidget: CircularProfileAvatar(
-            "",
-            radius: screenWidth * 0.13,
-            backgroundColor: Colors.transparent,
-            borderWidth: screenWidth * 0.005, 
-            borderColor:
-                Colors.white, 
-            elevation:
-                5.0,
-            foregroundColor: Colors.blue.withOpacity(
-                0.5),
-            onTap: () {
-              Scaffold.of(context)
-                  .showSnackBar(SnackBar(content: Text("You clicked avatar")));
-            },
-            child: Image.asset(
-              "images/father.jpg",
-              fit: BoxFit.cover,
-            ),
-          ),
-          floatingPosition: FloatingPosition(left: screenWidth * 0.05),
-          expandedHeight: screenHeight * 0.4,
-          slivers: <Widget>[
-            SliverAppBar(
-              backgroundColor: Colors.blue,
-              expandedHeight: screenHeight * 0.43,
-              pinned: true,
-              flexibleSpace: FlexibleSpaceBar(
-                title: Padding(
-                  padding: EdgeInsets.only(left: screenWidth * 0.1),
-                  child: Text("Laboski Bezoz", style: TextStyle(fontWeight: FontWeight.bold)),
-                ),
-                background: Image.asset(
-                  "images/children.jpg",
-                  fit: BoxFit.cover,
+      body: SafeArea(
+        child: Stack(
+          fit: StackFit.expand,
+          children: <Widget>[
+            Positioned(
+              top: 0.0,
+              right: 0.0,
+              left: 0.0,
+              child: Padding(
+                padding: EdgeInsets.only(
+                    left: screenWidth * 0.04,
+                    right: screenWidth * 0.02,
+                    top: screenHeight * 0.015),
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: <Widget>[
+                    Text(
+                      "Profile",
+                      style: textTheme.headline.copyWith(
+                          fontWeight: FontWeight.bold, color: Colors.black),
+                    ),
+                    CircularProfileAvatar(
+                      "",
+                      radius: screenWidth * 0.05,
+                      borderWidth: screenWidth * 0.005,
+                      borderColor: Colors.white,
+                      elevation: 5.0,
+                      foregroundColor: Colors.blue.withOpacity(0.5),
+                      onTap: () {
+                        Scaffold.of(context).showSnackBar(
+                            SnackBar(content: Text("You clicked avatar")));
+                      },
+                      child: Image.asset(
+                        "images/father.jpg",
+                        fit: BoxFit.cover,
+                      ),
+                    ),
+                  ],
                 ),
               ),
             ),
-            SliverList(
-              delegate: SliverChildListDelegate(
-                List.generate(
-                  10,
-                  (int index) => ListTile(title: Text("Item $index")),
-                ),
+            Positioned(
+              right: 0.0,
+              bottom: 0.0,
+              child: Image.asset("images/city.png"),
+            ),
+            Positioned(
+              top: screenHeight * 0.13,
+              left: 0.0,
+              right: 0.0,
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.center,
+                children: <Widget>[
+                  SvgPicture.asset(
+                    'images/profile.svg',
+                    height: screenHeight * 0.28,
+                    width: screenWidth * 0.28,
+                  ),
+                  SizedBox(
+                    height: screenHeight * 0.03,
+                  ),
+                  Container(
+                    width: screenWidth * 0.7,
+                    child: Center(
+                      child: Text(
+                        "Laboski Bezoz",
+                        style: textTheme.title,
+                      ),
+                    ),
+                  ),
+                  SizedBox(
+                    height: screenHeight * 0.01,
+                  ),
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: <Widget>[
+                      horizontalLine(),
+                      SizedBox(
+                        width: screenWidth * 0.06,
+                      ),
+                      horizontalLine()
+                    ],
+                  ),
+                  Padding(
+                    padding: EdgeInsets.only(top: screenHeight * 0.01),
+                    child: Text(
+                      "Your Children",
+                      style: textTheme.body1.copyWith(fontWeight: FontWeight.bold),
+                    ),
+                  ),
+                  Padding(
+                      padding:
+EdgeInsets.only(top: screenHeight * 0.025),
+                      child: ConstrainedBox(
+                          constraints:
+                              BoxConstraints(maxHeight: screenHeight * 0.2),
+                          child: ChildrenList())),
+                  SizedBox(height: screenHeight * 0.02),
+                  InkWell(
+                    onTap: () {
+                      _validateLogout(context);
+                    },
+                    child: Container(
+                      width: screenWidth * 0.44,
+                      height: screenHeight * 0.075,
+                      decoration: BoxDecoration(
+                          gradient: LinearGradient(colors: [
+                            Color(0xFF17ead9),
+                            Colors.blue,
+                          ]),
+                          borderRadius:
+                              BorderRadius.circular(screenHeight * 0.01125),
+                          boxShadow: [
+                            BoxShadow(
+                                color: Color(0xFF6078ea).withOpacity(.3),
+                                offset: Offset(0.0, screenHeight * 0.01),
+                                blurRadius: screenHeight * 0.01)
+                          ]),
+                      child: Material(
+                        color: Colors.transparent,
+                        child: Center(
+                            child: Text(
+                          "LOGOUT",
+                          style: textTheme.title.copyWith(
+                              letterSpacing: 1.0,
+                              color: Colors.white,
+                              fontWeight: FontWeight.w800,
+                              fontSize: 19.6),
+                        )),
+                      ),
+                    ),
+                  ),
+                ],
               ),
             ),
           ],
