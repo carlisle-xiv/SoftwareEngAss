@@ -1,7 +1,7 @@
 import 'dart:collection';
 
 import 'package:flutter/cupertino.dart';
-import 'package:gods_eye/models/teacher_model/teacher.dart';
+import 'package:gods_eye/models/teacher_model/teachers.dart';
 
 class TeachersData extends ChangeNotifier {
   List<Teacher> _teachers = [

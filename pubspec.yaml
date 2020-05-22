@@ -20,6 +20,7 @@ dependencies:
   rxdart: ^0.24.0
   sliver_fab: "^1.0.0"
   circular_profile_avatar: ^1.0.6
+  url_launcher: ^5.4.7
 
 
 dev_dependencies:
