@@ -35,7 +35,7 @@ class ProfileScreen extends StatelessWidget {
                   children: <Widget>[
                     Text(
                       "Profile",
-                      style: textTheme.headline.copyWith(
+                      style: textTheme.headline4.copyWith(
                           fontWeight: FontWeight.bold, color: Colors.black),
                     ),
                     CircularProfileAvatar(
@@ -104,7 +104,7 @@ class ProfileScreen extends StatelessWidget {
                     padding: EdgeInsets.only(top: screenHeight * 0.01),
                     child: Text(
                       "Your Children",
-                      style: textTheme.body1.copyWith(fontWeight: FontWeight.bold),
+                      style: textTheme.bodyText1.copyWith(fontWeight: FontWeight.bold),
                     ),
                   ),
                   Padding(

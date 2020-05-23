@@ -1,6 +1,6 @@
 import 'dart:collection';
 import 'package:flutter/cupertino.dart';
-import 'package:gods_eye/models/children_models/child.dart';
+import 'package:gods_eye/models/children_model/child.dart';
 
 class ChildrenData extends ChangeNotifier{
   List<Child> _children = [
