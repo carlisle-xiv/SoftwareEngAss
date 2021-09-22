@@ -31,7 +31,7 @@ class _LoginScreenState extends State<LoginScreen> {
     double screenHeight = MediaQuery.of(context).size.height;
     TextTheme textTheme = Theme.of(context).textTheme;
 
-    void _validateLogin() async {
+    void _validateLogin()  {
       // Login Fail
 //      Timer(Duration(seconds: 3), () {
 //        _btnController.error();
@@ -54,7 +54,7 @@ class _LoginScreenState extends State<LoginScreen> {
 
     return Scaffold(
       backgroundColor: Colors.white,
-      resizeToAvoidBottomPadding: true,
+      resizeToAvoidBottomInset: true,
       body: SafeArea(
         child: Stack(
           fit: StackFit.expand,

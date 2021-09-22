@@ -42,7 +42,7 @@ class Childcard extends StatelessWidget {
             ),
             Padding(
               padding: EdgeInsets.only(top: screenHeight * 0.008),
-              child: Text(name, style: textTheme.subtitle2),
+              child: Text(name, style: textTheme.subtitle),
             ),
             Padding(
               padding: EdgeInsets.only(top: screenHeight * 0.006),

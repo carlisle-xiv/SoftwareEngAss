@@ -243,24 +243,13 @@ class RoundedButtonController {
     this._errorListener = errorListener;
     this._resetListener = resetListener;
   }
+  start() => _startListener();
 
-  start() {
-    _startListener();
-  }
+  stop() => _stopListener();
 
-  stop() {
-    _stopListener();
-  }
+  success() => _successListener();
+  
+  error() => _errorListener();
 
-  success() {
-    _successListener();
-  }
-
-  error() {
-    _errorListener();
-  }
-
-  reset() {
-    _resetListener();
-  }
+  reset() =>  _resetListener();
 }
